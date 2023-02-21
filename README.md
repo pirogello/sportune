@@ -5,7 +5,7 @@
     1. [java](#Установка-JAVA)
     2. [maven](#Установка-maven) 
     3. [postgres](#Установка-postgres) 
-    4. [Node.js + npm](#Установка-node.js-+-npm) 
+    4. [Node.js + npm](#установка-nodejs--npm) 
 1. [Запуск](#Запуск)
     1. [База данных](#База-данных)
     2. [Backend](#Backend) 
