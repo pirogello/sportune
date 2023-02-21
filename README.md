@@ -12,25 +12,31 @@
     3. [Frontend](#Frontend) 
 
 ## Установка необходимых программ
-####Установка JAVA:
+
+#### Установка JAVA:
+
 ___
 Linux:
 ```
 sudo apt-get install openjdk-11-jdk
 ```
-####Установка maven
+#### Установка maven
 ____
 Linux:
 ```
 sudo apt-get install maven
 ```
+
 ####Установка postgres
+
 ____
 Linux:
 ```
 sudo apt install postgresql postgresql-contrib
 ```
-####Установка node.js + npm
+
+#### Установка node.js + npm
+
 ____
 Linux:
 ```
@@ -42,8 +48,10 @@ sudo apt install npm
 
 
 
-##Запуск
-####База данных.
+## Запуск
+
+#### База данных.
+
 Для этого в терминале выполните следующие команды:
 ```
 sudo -u postgres psql
@@ -55,7 +63,7 @@ sudo -u postgres psql
 ```
 create database sport;
 ```
-####Backend
+#### Backend
 *`Работает на 9002 порту, он должен быть свободен.`*
 
 Для запуска backend-части приложения:
@@ -64,7 +72,7 @@ create database sport;
 ```
 mvn spring-boot:run
 ```
-####Frontend
+#### Frontend
 *`Работает на 8000 порту, он должен быть свободен.`*
 
 Для запуска frontend-части приложения:
@@ -73,4 +81,4 @@ mvn spring-boot:run
 ```
 mvn spring-boot:run
 ```
-#####Перейдите в браузере по адресу http://localhost:9002
+##### Перейдите в браузере по адресу http://localhost:9002
