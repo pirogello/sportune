@@ -27,7 +27,7 @@ Linux:
 sudo apt-get install maven
 ```
 
-####Установка postgres
+#### Установка postgres
 
 ____
 Linux:
