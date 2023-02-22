@@ -79,6 +79,6 @@ mvn spring-boot:run
 
 Откройте новое окна терминала в корне проекта и введите:
 ```
-mvn spring-boot:run
+npm start
 ```
 ##### Перейдите в браузере по адресу http://localhost:9002
