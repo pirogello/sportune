@@ -57,7 +57,6 @@ sudo apt install npm
 sudo -u postgres psql
 /password postgres
 ```
-*`повторно введите пароль "postgres"`*
 
 После того как вошли в базу данных и задали пароль для пользователя, создайте базу данных:
 ```
