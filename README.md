@@ -32,7 +32,7 @@ sudo apt-get install maven
 ____
 Linux:
 ```
-sudo apt install postgresql postgresql-contrib
+apt install postgresql postgresql-contrib
 ```
 
 #### Установка node.js + npm
