@@ -7,6 +7,7 @@ import com.project.model.sport.competition.BaseCompetition;
 import com.project.model.sport.result.BaseSportResult;
 import com.project.model.sport.type.BaseSport;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -14,10 +15,21 @@ import java.util.stream.Collectors;
 
 
 @Data
+@Entity
+@Table(name = "student")
 public class User extends BaseUser {
+    @OneToMany(mappedBy = "user")
     private List<BaseSport> sports = new ArrayList<>();
+    @OneToMany(mappedBy = "user")
     private List<BaseSportResult> sportResults  = new ArrayList<>();
+    @ManyToMany
+    @JoinTable(
+            name = "user_competitions",
+            joinColumns = {@JoinColumn(name = "user_id")},
+            inverseJoinColumns = {@JoinColumn(name = "competition_id")}
+    )
     private List<BaseCompetition> competitions = new ArrayList<>();
+    @ManyToOne
     private Trainer trainer;
 
 

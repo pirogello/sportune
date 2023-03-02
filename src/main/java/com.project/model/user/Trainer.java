@@ -4,15 +4,21 @@ import lombok.Data;
 import com.project.model.Role;
 import com.project.model.sport.type.SportType;
 
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Data
+@Entity
+@Table(name = "trainer")
 public class Trainer extends BaseUser{
 
     private SportType sport;
+    @OneToMany(mappedBy = "trainer")
     private List<User> trainee = new ArrayList<>();
     private String qualification;
     private String workExperience;

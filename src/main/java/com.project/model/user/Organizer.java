@@ -4,13 +4,17 @@ import com.project.model.Publication;
 import com.project.model.Role;
 import com.project.model.sport.competition.BaseCompetition;
 
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
-
+@Entity
+@Table(name ="organizer")
 public class Organizer extends BaseUser {
-
+    @OneToMany(mappedBy = "organizer")
     private List<BaseCompetition> competitions = new ArrayList<>();
 
     public Organizer(UUID id, String username, String info, String password) {
