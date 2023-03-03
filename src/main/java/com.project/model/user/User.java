@@ -6,6 +6,7 @@ import com.project.model.Role;
 import com.project.model.sport.competition.BaseCompetition;
 import com.project.model.sport.result.BaseSportResult;
 import com.project.model.sport.type.BaseSport;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -15,10 +16,16 @@ import java.util.stream.Collectors;
 
 
 @Data
+@NoArgsConstructor
 @Entity
 @Table(name = "student")
 public class User extends BaseUser {
-    @OneToMany(mappedBy = "user")
+    @ManyToMany
+    @JoinTable(
+            name = "sport_participants",
+            joinColumns = {@JoinColumn(name = "user_id")},
+            inverseJoinColumns = {@JoinColumn(name = "sport_id")}
+    )
     private List<BaseSport> sports = new ArrayList<>();
     @OneToMany(mappedBy = "user")
     private List<BaseSportResult> sportResults  = new ArrayList<>();
@@ -33,8 +40,8 @@ public class User extends BaseUser {
     private Trainer trainer;
 
 
-    public User(UUID id, String username, String info, String password){
-        super(id, username,info, password);
+    public User(String username, String info, String password){
+        super(username,info, password);
         this.role = Role.USER;
     }
 
@@ -47,7 +54,6 @@ public class User extends BaseUser {
 
     public void addCompetition(BaseCompetition competition){
         this.competitions.add(competition);
-        competition.addPlayer(this);
     }
 
     @Override

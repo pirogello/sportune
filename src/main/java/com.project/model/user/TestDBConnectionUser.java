@@ -8,6 +8,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.UUID;
 
 @Data
 @NoArgsConstructor
@@ -17,8 +18,6 @@ import java.io.Serializable;
 public class TestDBConnectionUser implements Serializable {
 
     @Id
-    @GeneratedValue(generator="system-uuid")
-    @GenericGenerator(name="system-uuid", strategy = "uuid")
     @Column(unique = true)
     private Integer id;
     @Column(nullable = false, unique = true)

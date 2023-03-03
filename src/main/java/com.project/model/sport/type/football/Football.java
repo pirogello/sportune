@@ -1,5 +1,6 @@
 package com.project.model.sport.type.football;
 
+import com.project.model.sport.type.SportType;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import com.project.model.sport.type.BaseSport;
@@ -15,10 +16,8 @@ import java.util.stream.Collectors;
 public class Football extends BaseSport {
     private List<User> team = new ArrayList<>();
 
-    public Football(UUID id, String title, User user) {
-        super(id, title, user);
-        user.addSport(this);
-        team.add(user);
+    public Football(String title) {
+        super(title, SportType.FOOTBALL);
     }
 
     public void addToTeam(User user){

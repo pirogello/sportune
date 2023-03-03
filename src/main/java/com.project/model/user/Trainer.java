@@ -3,10 +3,9 @@ package com.project.model.user;
 import lombok.Data;
 import com.project.model.Role;
 import com.project.model.sport.type.SportType;
+import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -14,17 +13,18 @@ import java.util.stream.Collectors;
 
 @Data
 @Entity
+@NoArgsConstructor
 @Table(name = "trainer")
 public class Trainer extends BaseUser{
-
+    @Enumerated(EnumType.STRING)
     private SportType sport;
     @OneToMany(mappedBy = "trainer")
     private List<User> trainee = new ArrayList<>();
     private String qualification;
     private String workExperience;
 
-    public Trainer(UUID id, String username, String info, String password, String qualification, String workExperience, SportType type) {
-        super(id, username, info, password);
+    public Trainer(String username, String info, String password, String qualification, String workExperience, SportType type) {
+        super(username, info, password);
         this.role = Role.TRAINER;
         this.qualification = qualification;
         this.workExperience = workExperience;

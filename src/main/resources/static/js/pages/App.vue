@@ -5,7 +5,7 @@
             <div class="header-text">SPORTUNE</div>
             <div class="user-together">
                 <div class="user-select" @click="userMenu">
-                    <div class="text">{{user?.username}}</div>
+                    <div class="text">{{com.project.repository.user?.username}}</div>
                     <v-spacer></v-spacer>
                     <img src="https://img.freepik.com/free-photo/sports-blonde-woman-in-a-sportswear-training-in-a-gym_1157-31068.jpg?w=740&t=st=1669175912~exp=1669176512~hmac=255c7da8bc0640090a38d180ab202ff5e688fec40ffe42268e40f3ec5d190af5" alt="" class="round">
                 </div>
@@ -14,7 +14,7 @@
                      ref="overlay"
                 >
                     <div class="line-name-photo">
-                        <div class="name-line">{{user?.username}}</div>
+                        <div class="name-line">{{com.project.repository.user?.username}}</div>
                         <img src="https://img.freepik.com/free-photo/sports-blonde-woman-in-a-sportswear-training-in-a-gym_1157-31068.jpg?w=740&t=st=1669175912~exp=1669176512~hmac=255c7da8bc0640090a38d180ab202ff5e688fec40ffe42268e40f3ec5d190af5" alt="" class="round">
 
                     </div>
@@ -91,7 +91,7 @@
                     width="200px"
                     @click="get(1)"
             >
-                get first user
+                get first com.project.repository.userRepos
             </v-btn>
             <v-btn
                     elevation="2"
@@ -102,7 +102,7 @@
                     width="200px"
                     @click="get(2)"
             >
-                get second user
+                get second com.project.repository.userRepos
             </v-btn>
 
         </div>

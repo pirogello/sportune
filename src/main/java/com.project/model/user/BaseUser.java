@@ -20,9 +20,8 @@ import java.util.UUID;
 )
 public abstract class BaseUser {
     @Id
-    @GeneratedValue(generator="system-uuid")
-    @GenericGenerator(name="system-uuid", strategy = "uuid")
-    @Column(unique = true, nullable = false)
+    @GeneratedValue(generator = "system-uuid")
+    @GenericGenerator(name = "system-uuid", strategy = "org.hibernate.id.UUIDGenerator")
     protected UUID id;
     @Column(unique = true, nullable = false)
     protected String username;
@@ -69,8 +68,7 @@ public abstract class BaseUser {
     )
     List<Publication> jointPublication = new ArrayList<>();
 
-    protected BaseUser(UUID id, String username, String info, String password) {
-        this.id = id;
+    protected BaseUser(String username, String info, String password) {
         this.username = username;
         this.info = info;
         this.password = password;
@@ -101,4 +99,5 @@ public abstract class BaseUser {
         this.following.add(user);
         user.getFollowers().add(this);
     }
+
 }

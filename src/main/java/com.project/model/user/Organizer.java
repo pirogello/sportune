@@ -3,6 +3,8 @@ package com.project.model.user;
 import com.project.model.Publication;
 import com.project.model.Role;
 import com.project.model.sport.competition.BaseCompetition;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
@@ -11,14 +13,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
+@Data
+@NoArgsConstructor
 @Entity
 @Table(name ="organizer")
 public class Organizer extends BaseUser {
     @OneToMany(mappedBy = "organizer")
     private List<BaseCompetition> competitions = new ArrayList<>();
 
-    public Organizer(UUID id, String username, String info, String password) {
-        super(id, username, info, password);
+    public Organizer(String username, String info, String password) {
+        super(username, info, password);
         this.role = Role.ORGANIZER;
     }
 

@@ -1,5 +1,6 @@
 package com.project.model.sport.competition;
 
+import com.project.model.sport.type.BaseSport;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import com.project.model.sport.type.SportType;
@@ -20,30 +21,31 @@ import java.util.UUID;
 public class BaseCompetition {
     @Id
     @GeneratedValue(generator="system-uuid")
-    @GenericGenerator(name="system-uuid", strategy = "uuid")
+    @GenericGenerator(name = "system-uuid", strategy = "org.hibernate.id.UUIDGenerator")
     protected UUID id;
     protected String title;
     //@Column(name = "local_date_time", columnDefinition = "TIMESTAMP")
     protected LocalDateTime startCompetition;
    // @Column(name = "local_date_time", columnDefinition = "TIMESTAMP")
     protected LocalDateTime endCompetition;
-    @Enumerated(EnumType.STRING)
-    protected SportType sportType;
+    @ManyToOne
+    protected BaseSport sport;
     @ManyToOne
     protected Organizer organizer;
     @ManyToMany(mappedBy = "competitions")
     protected List<User> players = new ArrayList<>();
 
-    public BaseCompetition(UUID id, String title, LocalDateTime start, LocalDateTime end, SportType type) {
-        this.id = id;
+    public BaseCompetition(String title, LocalDateTime start, LocalDateTime end, BaseSport sport, Organizer organizer) {
         this.title = title;
         this.startCompetition = start;
         this.endCompetition = end;
-        this.sportType = type;
+        this.sport = sport;
+        this.organizer = organizer;
     }
 
     public void addPlayer(User user){
         players.add(user);
+        user.addCompetition(this);
     }
 
 }
