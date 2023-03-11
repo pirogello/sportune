@@ -1,5 +1,7 @@
 package com.project.model.sport.result;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.project.model.sport.competition.BaseCompetition;
 import lombok.Data;
 import com.project.model.sport.type.BaseSport;
 import com.project.model.user.User;
@@ -19,14 +21,16 @@ public class BaseSportResult {
     @GenericGenerator(name = "system-uuid", strategy = "org.hibernate.id.UUIDGenerator")
     private UUID id;
     @ManyToOne
+    @JsonIgnoreProperties({"users", "following", "followers", "publications", "likedPublication", "jointPublication", "competitions"})
     private User user;
     @ManyToOne
-    private BaseSport sport;
+    @JsonIgnoreProperties({"players"})
+    private BaseCompetition competition;
     private int point;
 
-    public BaseSportResult(User user, BaseSport sport, int point) {
+    public BaseSportResult(User user, BaseCompetition competition, int point) {
         this.user = user;
-        this.sport = sport;
+        this.competition = competition;
         this.point = point;
 
         user.addSportResults(this);

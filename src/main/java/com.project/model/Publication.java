@@ -1,8 +1,8 @@
 package com.project.model;
 
-import lombok.Data;
-import lombok.Getter;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.project.model.user.BaseUser;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -23,34 +23,30 @@ public class Publication {
     private UUID id;
     private String title;
     @ManyToMany(mappedBy = "publications")
+    @JsonIgnoreProperties({"likedPublication", "jointPublication", "publications", "followers", "following", "competitions","trainer","trainee"})
     private List<BaseUser> authors = new ArrayList<>();
     @ManyToMany(mappedBy = "likedPublication")
+    @JsonIgnoreProperties({"likedPublication", "jointPublication", "publications", "followers", "following", "competitions","trainer","trainee"})
     private List<BaseUser> likes = new ArrayList<>();
     @ManyToMany(mappedBy = "jointPublication")
+    @JsonIgnoreProperties({"likedPublication", "jointPublication", "publications", "followers", "following", "competitions","trainer","trainee"})
     private List<BaseUser> joint = new ArrayList<>();
 
-//    public Publication(String title, List<BaseUser> authors) {
-//        this.title = title;
-//        this.authors = authors;
-//        for (BaseUser author : authors) {
-//            author.addPublication(this);
-//        }
-//    }
-    public Publication(String title) {
-        this.title = title;
 
-    }
+
+
+    public Publication(String title) {this.title = title;}
+
     public void addAuthor(BaseUser user){
-        this.authors.add(user);
+        user.addPublication(this);
     }
+
     public void addAuthors(List<BaseUser> authors){
-        this.authors = authors;
         for (BaseUser author : authors) {
             author.addPublication(this);
         }
     }
     public void like(BaseUser user){
-        this.likes.add(user);
         user.likePublication(this);
     }
     @Override

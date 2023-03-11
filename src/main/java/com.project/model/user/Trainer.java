@@ -1,14 +1,15 @@
 package com.project.model.user;
 
-import lombok.Data;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.project.model.Role;
+import com.project.model.sport.Train;
 import com.project.model.sport.type.SportType;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Data
@@ -16,12 +17,17 @@ import java.util.stream.Collectors;
 @NoArgsConstructor
 @Table(name = "trainer")
 public class Trainer extends BaseUser{
+    private String qualification;
+    private String workExperience;
     @Enumerated(EnumType.STRING)
     private SportType sport;
     @OneToMany(mappedBy = "trainer")
+    @JsonIgnoreProperties({"likedPublication", "jointPublication", "publications", "followers", "following", "trainer"})
     private List<User> trainee = new ArrayList<>();
-    private String qualification;
-    private String workExperience;
+    @OneToMany(mappedBy = "trainer")
+    @JsonIgnoreProperties({"trainer"})
+    private List<Train> trains = new ArrayList<>();
+
 
     public Trainer(String username, String info, String password, String qualification, String workExperience, SportType type) {
         super(username, info, password);
@@ -32,8 +38,11 @@ public class Trainer extends BaseUser{
     }
 
     public void addTrainee(User user){
-        this.trainee.add(user);
         user.setTrainer(this);
+    }
+
+    public void addTrain(Train train){
+        train.setTrainer(this);
     }
 
     @Override

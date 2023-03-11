@@ -1,17 +1,18 @@
 package com.project.model.user;
 
-import lombok.Data;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.project.model.Publication;
 import com.project.model.Role;
+import com.project.model.sport.Train;
 import com.project.model.sport.competition.BaseCompetition;
 import com.project.model.sport.result.BaseSportResult;
 import com.project.model.sport.type.BaseSport;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 
@@ -21,23 +22,26 @@ import java.util.stream.Collectors;
 @Table(name = "student")
 public class User extends BaseUser {
     @ManyToMany
-    @JoinTable(
-            name = "sport_participants",
-            joinColumns = {@JoinColumn(name = "user_id")},
-            inverseJoinColumns = {@JoinColumn(name = "sport_id")}
-    )
+    @JsonIgnoreProperties({"users"})
+    @JoinTable(name = "sport_participants", joinColumns = {@JoinColumn(name = "user_id")}, inverseJoinColumns = {@JoinColumn(name = "sport_id")})
     private List<BaseSport> sports = new ArrayList<>();
     @OneToMany(mappedBy = "user")
+    @JsonIgnoreProperties({"user"})
     private List<BaseSportResult> sportResults  = new ArrayList<>();
     @ManyToMany
-    @JoinTable(
-            name = "user_competitions",
-            joinColumns = {@JoinColumn(name = "user_id")},
-            inverseJoinColumns = {@JoinColumn(name = "competition_id")}
-    )
+    @JsonIgnoreProperties({"players"})
+    @JoinTable(name = "user_competitions",joinColumns = {@JoinColumn(name = "user_id")},inverseJoinColumns = {@JoinColumn(name = "competition_id")})
     private List<BaseCompetition> competitions = new ArrayList<>();
     @ManyToOne
+    @JsonIgnoreProperties({"likedPublication", "jointPublication", "publications", "followers", "following","trainee"})
     private Trainer trainer;
+    @ManyToMany
+    @JsonIgnoreProperties({"users"})
+    @JoinTable(name = "user_trains", joinColumns = {@JoinColumn(name = "user_id")}, inverseJoinColumns = {@JoinColumn(name = "train_id")})
+    private List<Train> trains = new ArrayList<>();
+
+
+
 
 
     public User(String username, String info, String password){
@@ -54,6 +58,9 @@ public class User extends BaseUser {
 
     public void addCompetition(BaseCompetition competition){
         this.competitions.add(competition);
+    }
+    public void addTrain(Train train){
+        this.trains.add(train);
     }
 
     @Override
@@ -72,7 +79,7 @@ public class User extends BaseUser {
                 "   jointPublication=" +  this.jointPublication.stream().map(Publication::getTitle).collect(Collectors.toList()) + ",\n" +
                 "   publications=" + publications +",\n"+
                 "   sports=" + sports +",\n"+
-                "   sportResults=" + sportResults.stream().map((r) -> r.getSport().getTitle() + ": place - " + r.getPoint()).collect(Collectors.toList()) +",\n"+
+                "   sportResults=" + sportResults.stream().map((r) -> r.getCompetition().getTitle() + ": place - " + r.getPoint()).collect(Collectors.toList()) +",\n"+
                 '}'+",\n";
     }
 }

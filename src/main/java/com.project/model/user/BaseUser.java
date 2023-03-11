@@ -1,9 +1,10 @@
 package com.project.model.user;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.project.model.Publication;
 import com.project.model.Role;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -30,16 +31,13 @@ public abstract class BaseUser {
     protected String password;
     @Enumerated(EnumType.STRING)
     protected Role role;
-
     @ManyToMany
-    @JoinTable(
-            name = "user_followers",
-            joinColumns = {@JoinColumn(name = "follower_id")},
-            inverseJoinColumns = {@JoinColumn(name = "user_id")}
-    )
+    @JsonIgnoreProperties({"followers", "following", "publications", "likedPublication", "jointPublication", "trainee"})
+    @JoinTable(name = "user_followers", joinColumns = {@JoinColumn(name = "follower_id")}, inverseJoinColumns = {@JoinColumn(name = "user_id")})
     List<BaseUser> following = new ArrayList<>();
 
     @ManyToMany
+    @JsonIgnoreProperties({"followers", "following", "publications", "likedPublication", "jointPublication"})
     @JoinTable(
             name = "user_followers",
             joinColumns = {@JoinColumn(name = "user_id")},
@@ -68,6 +66,8 @@ public abstract class BaseUser {
     )
     List<Publication> jointPublication = new ArrayList<>();
 
+
+
     protected BaseUser(String username, String info, String password) {
         this.username = username;
         this.info = info;
@@ -91,13 +91,11 @@ public abstract class BaseUser {
         if (this.jointPublication.contains(publication)) {
             this.jointPublication.remove(publication);
             this.publications.add(publication);
-            publication.addAuthor(this);
         }
     }
 
     public void followToUser(BaseUser user) {
         this.following.add(user);
-        user.getFollowers().add(this);
     }
 
 }

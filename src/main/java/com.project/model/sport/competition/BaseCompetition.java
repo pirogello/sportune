@@ -1,11 +1,11 @@
 package com.project.model.sport.competition;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.project.model.sport.type.BaseSport;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import com.project.model.sport.type.SportType;
 import com.project.model.user.Organizer;
 import com.project.model.user.User;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -24,16 +24,22 @@ public class BaseCompetition {
     @GenericGenerator(name = "system-uuid", strategy = "org.hibernate.id.UUIDGenerator")
     protected UUID id;
     protected String title;
-    //@Column(name = "local_date_time", columnDefinition = "TIMESTAMP")
+    @Column(columnDefinition = "TIMESTAMP")
     protected LocalDateTime startCompetition;
-   // @Column(name = "local_date_time", columnDefinition = "TIMESTAMP")
+    @Column(columnDefinition = "TIMESTAMP")
     protected LocalDateTime endCompetition;
     @ManyToOne
+    @JsonIgnoreProperties({"users"})
     protected BaseSport sport;
     @ManyToOne
+    @JsonIgnoreProperties({"likedPublication", "jointPublication", "publications", "followers", "following", "competitions"})
     protected Organizer organizer;
     @ManyToMany(mappedBy = "competitions")
+    @JsonIgnoreProperties({"likedPublication", "jointPublication", "publications", "followers", "following", "competitions"})
     protected List<User> players = new ArrayList<>();
+
+
+
 
     public BaseCompetition(String title, LocalDateTime start, LocalDateTime end, BaseSport sport, Organizer organizer) {
         this.title = title;

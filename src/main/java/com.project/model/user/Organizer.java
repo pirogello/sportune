@@ -1,5 +1,6 @@
 package com.project.model.user;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.project.model.Publication;
 import com.project.model.Role;
 import com.project.model.sport.competition.BaseCompetition;
@@ -11,15 +12,20 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 import java.util.stream.Collectors;
+
+
 @Data
 @NoArgsConstructor
 @Entity
 @Table(name ="organizer")
 public class Organizer extends BaseUser {
     @OneToMany(mappedBy = "organizer")
+    @JsonIgnoreProperties({"organizer"})
     private List<BaseCompetition> competitions = new ArrayList<>();
+
+
+
 
     public Organizer(String username, String info, String password) {
         super(username, info, password);
