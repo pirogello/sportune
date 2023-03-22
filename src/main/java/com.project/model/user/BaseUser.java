@@ -3,12 +3,16 @@ package com.project.model.user;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.project.model.Publication;
 import com.project.model.Role;
+import com.project.model.Status;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -24,7 +28,17 @@ public abstract class BaseUser {
     @GeneratedValue(generator = "system-uuid")
     @GenericGenerator(name = "system-uuid", strategy = "org.hibernate.id.UUIDGenerator")
     protected UUID id;
-    @Column(unique = true, nullable = false)
+    //@Column(unique = true, nullable = false)
+    @CreatedDate
+    private Date created;
+    @LastModifiedDate
+    private Date updated;
+    private String firstName;
+    private String lastName;
+    private String email;
+    @Enumerated(EnumType.STRING)
+    private Status status;
+    @Column(nullable = false, unique = true)
     protected String username;
     protected String info;
     @Column(nullable = false)

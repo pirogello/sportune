@@ -1,10 +1,15 @@
 <template>
     <v-app>
-        <router-view></router-view>
+        admin
     </v-app>
 </template>
 
 <script>
     export default {
+        name: "Admin"
     }
 </script>
+
+<style scoped>
+
+</style>

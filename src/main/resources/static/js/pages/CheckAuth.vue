@@ -1,10 +1,15 @@
 <template>
     <v-app>
-        <router-view></router-view>
+        haveauth
     </v-app>
 </template>
 
 <script>
     export default {
+        name: "CheckAuth"
     }
 </script>
+
+<style scoped>
+
+</style>
