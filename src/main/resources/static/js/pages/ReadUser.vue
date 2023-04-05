@@ -124,11 +124,12 @@
                     });
             },
             async findByUsername() {
-                await http.get('/user/find/' + this.username, {
+                await http.get('/findUser/find/' + this.username, {
                     username: this.username
                 })
                     .then((response) => {
-                        this.user = JSON.parse(JSON.stringify(response.data));
+                        this.user = response.data.username;
+                        //JSON.parse(JSON.stringify(response.data));
                         this.info = this.user.info
                         this.id = this.user.id
                         this.changeUsername = this.user.username

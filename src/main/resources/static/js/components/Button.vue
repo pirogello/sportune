@@ -39,7 +39,7 @@
         font-family: Arial, Helvetica, sans-serif;
         font-size: 14px;
         padding: 8px 16px;
-        margin: 20px 10px;
+        margin: 10px 10px;
         text-decoration: none;
         text-shadow: 0 1px 1px rgba(0, 0, 0, 0.075);
         -webkit-transition: background-color 0.1s linear;

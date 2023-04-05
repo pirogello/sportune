@@ -48,7 +48,12 @@ public class JwtSecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
-                .antMatchers("/", "/login", "/js/**", "/error/**","/test/**", "/test/api/**", "/api/v1/auth/**", "/resp/**","/models/**","/readUsers/**","/readPublication/**", "/user/**").permitAll()// пути разрешенные всем
+                .antMatchers("/", "/login", "/js/**",
+                        "/error/**","/test/**", "/test/api/**",
+                        "/api/v1/auth/**", "/resp/**","/models/**",
+                        "/readUsers/**","/readPublication/**",
+                        "/user/**", "/ap/**", "/profile/**", "/user/**",
+                        "/findUser/**").permitAll()// пути разрешенные всем
                 //.antMatchers("/api/v1/auth/**", "/resp/**").permitAll()
                 .antMatchers("/profile/admin").hasAuthority("TRAINER")// пути разрешенные пользователям с ролью TRAINER
                 .anyRequest().authenticated()

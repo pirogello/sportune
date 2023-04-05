@@ -29,7 +29,12 @@
                         color="#3BACB6"
                         width="120px"
                 ></Button>
-
+                <Button v-if="this.token"
+                        @click.native="rout('/profile')"
+                        name="Profile"
+                        color="#3BACB6"
+                        width="120px"
+                ></Button>
             </div>
 
         </div>
@@ -41,7 +46,6 @@
             >
             </v-card>
         </div>
-
     </v-app>
 </template>
 
@@ -66,6 +70,9 @@
                 }).then(() => {
                     this.token = null
                 });
+            },
+            profile(){
+
             },
         },
         computed: {

@@ -13,7 +13,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(value = "/user")
+@RequestMapping(value = "/findUser")
 @Slf4j
 public class UserController {
 
@@ -28,9 +28,9 @@ public class UserController {
     @GetMapping("/find/{username}")
     public BaseUser getByUsername(@PathVariable String username){
         System.out.println(username);
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
-        System.out.println(userDetails);
+        //Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        //UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
+        //System.out.println(userDetails);
         log.info("In find user");
         return userService.findByUsername(username);
     }

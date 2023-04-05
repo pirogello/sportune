@@ -52,7 +52,7 @@
                         router.push("/admin");
                     })
                     .catch(function (error) {
-                        console.log("in test admin")
+                        //console.log("in test admin")
                         console.log(error)
                         // if(error.response.status === 401){
                         //     router.push("/admin");
@@ -67,7 +67,7 @@
                         router.push("/haveauth");
                     })
                     .catch(function (error) {
-                        console.log("in test have auth")
+                        //console.log("in test have auth")
                         console.log(error);
                     });
             },

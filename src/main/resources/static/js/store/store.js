@@ -5,7 +5,6 @@ import http from '../api/http-common.js'
 import router from "../router/router";
 
 Vue.use(Vuex)
-localStorage.setItem('fillDB', false)
 
 export default new Vuex.Store({
     state: {

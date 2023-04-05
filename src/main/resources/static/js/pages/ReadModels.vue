@@ -6,12 +6,7 @@
                 color="#3BACB6"
                 width="120px"
         ></Button>
-<!--        <Button-->
-<!--                @click.native="rout('/readPublication')"-->
-<!--                name="publication"-->
-<!--                color="#3BACB6"-->
-<!--                width="120px"-->
-<!--        ></Button>-->
+
     </div>
 </template>
 

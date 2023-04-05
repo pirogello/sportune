@@ -4,8 +4,10 @@ const ax =  axios.create({
 });
 
 ax.interceptors.request.use(function (config) {
+
     const token = localStorage.getItem('token')
     const refreshToken = localStorage.getItem('refreshToken')
+    //console.log("запрос с токеном: " + token)
     if(token)
         config.headers.Authorization = 'Bearer_' + token;
     if(refreshToken)

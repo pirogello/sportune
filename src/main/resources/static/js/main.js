@@ -7,6 +7,7 @@ import router from "./router/router";
 import App from 'pages/App.vue'
 import http from "./api/http-common.js";
 
+
 http.get('/test/api/fillDB', {})
     .then(function (response) {
     })
@@ -17,8 +18,8 @@ http.get('/test/api/fillDB', {})
 
 Vue.use(Vuetify);
 
-new Vue ({
-    vuetify : new Vuetify(),
+new Vue({
+    vuetify: new Vuetify(),
     el: '#app',
     store,
     router,
