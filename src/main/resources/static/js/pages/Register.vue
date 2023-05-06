@@ -6,14 +6,14 @@
 
             <div class="buttons">
                 <Button
-                        @click.native="toAdminPage()"
+                        @click.native="toAdminPage"
                         name="Trainer page"
                         color="#3BACB6"
                         width="150px"
                         height="40px"
                 ></Button>
                 <Button
-                        @click.native="TestAccess()"
+                        @click.native="TestAccess"
                         name="Auth page"
                         color="#3BACB6"
                         width="150px"
@@ -47,8 +47,9 @@
         },
         methods: {
             async toAdminPage() {
-                await http.get('/profile/admin', {})
+                await http.get('/getprofile/admin', {})
                     .then(function (response) {
+                        console.log(response)
                         router.push("/admin");
                     })
                     .catch(function (error) {
@@ -62,8 +63,9 @@
                     });
             },
             async TestAccess() {
-                await http.get('/profile/haveauth', {})
+                await http.get('/getprofile/haveauth', {})
                     .then(function (response) {
+                        console.log(response)
                         router.push("/haveauth");
                     })
                     .catch(function (error) {

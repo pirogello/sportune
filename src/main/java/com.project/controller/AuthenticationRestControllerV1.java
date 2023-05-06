@@ -48,7 +48,7 @@ public class AuthenticationRestControllerV1 {
         try {
             String username = requestDto.getUsername();
 
-            BaseUser user = userService.findByUsername(username);
+            BaseUser user = userService.findByUsername(username).getBody();
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, requestDto.getPassword()));
             if(user == null){
                 throw new UsernameNotFoundException("User with username: " + username + " not found.");
@@ -81,7 +81,7 @@ public class AuthenticationRestControllerV1 {
         if(refreshToken!=null && jwtTokenProvider.validateRefreshToken(refreshToken)) {
             BaseUser user = userService.findByUsername(
                     jwtTokenProvider.getUsernameFromRefreshToken(refreshToken)
-            );
+            ).getBody();
             String newToken = jwtTokenProvider.createAccessToken(user.getUsername(), Collections.singletonList(user.getRole()));
             Map<Object, Object> response = new HashMap<>();
             response.put("username", user.getUsername());
@@ -94,13 +94,13 @@ public class AuthenticationRestControllerV1 {
     }
 
     @PostMapping("/refresh-token")
-    public ResponseEntity updateRefreshToken(@RequestBody TokenDto TokenDto){
+    public ResponseEntity updateRefreshToken(@RequestBody TokenDto tokenDto){
 
-        String refreshToken = TokenDto.getRefreshToken();
+        String refreshToken = tokenDto.getRefreshToken();
         if(refreshToken!=null && jwtTokenProvider.validateRefreshToken(refreshToken)) {
             BaseUser user = userService.findByUsername(
                     jwtTokenProvider.getUsernameFromRefreshToken(refreshToken)
-            );
+            ).getBody();
             String newToken = jwtTokenProvider.createAccessToken(user.getUsername(), Collections.singletonList(user.getRole()));
             String newRefresh = jwtTokenProvider.createRefreshToken(user.getUsername());
             Map<Object, Object> response = new HashMap<>();

@@ -14,21 +14,48 @@
                         </div>
                         <div class="usertag">{{this.findUsername}}</div>
                         <div class="nav-container">
-                            <input class="checkbox" type="checkbox" name="" id=""/>
+                            <input class="checkbox" @click="menuOpen" id="checkbox" type="checkbox"/>
                             <div class="hamburger-lines">
                                 <span class="line line1"></span>
                                 <span class="line line2"></span>
                                 <span class="line line3"></span>
                             </div>
+                            <div class="profileMenu" id="profileMenu">
+                                <Button
+                                        @click.native="rout('/trainer/'+findUsername+'/posts')"
+                                        name="Публикации"
+                                        color="#3BACB6"
+                                        width="132px"
+                                ></Button>
+                                <Button
+                                        @click.native="rout('/trainer/'+findUsername+'/trainings')"
+                                        name="Тренировки"
+                                        color="#3BACB6"
+                                        width="132px"
+                                ></Button>
+                                <Button
+                                        @click.native="rout('/')"
+                                        name="Опыт работы(-)"
+                                        color="#3BACB6"
+                                        width="132px"
+                                ></Button>
+                                <Button v-if="ownerOfProfile"
+                                        @click.native="rout('/')"
+                                        name="Спортсмены(-)"
+                                        color="#3BACB6"
+                                        width="132px"
+                                ></Button>
+                                <Button
+                                        @click.native="rout('/')"
+                                        name="Отзывы(-)"
+                                        color="#3BACB6"
+                                        width="132px"
+                                ></Button>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <Button v-if="this.findUsername==usernameOfUser"
-                        @click.native=""
-                        name=" Мои тренировки(пока не работает)"
-                        color="#3BACB6"
-                >
-                </Button>
+                <router-view :username1="findUsername"></router-view>
             </div>
         </div>
     </div>
@@ -36,20 +63,21 @@
 </template>
 
 <script>
-    import store from "../store/store.js"
-    import Button from '../components/Button.vue'
-    import router from "../router/router";
-    import http from "../api/http-common.js";
+    import store from "../../store/store.js"
+    import Button from '../../components/Button.vue'
+    import router from "../../router/router";
+    import http from "../../api/http-common.js";
 
 
     export default {
         components: {Button},
-        props:['findUsername'],
+       // props:['findUsername'],
         data() {
             return {
                 menu: false,
                 overlay: false,
                 username: "",
+                findUsername:router.currentRoute.params.username,
             }
         },
         methods: {
@@ -81,7 +109,14 @@
                 router.push("/user/" + this.username);
                 window.location.reload();
             },
-
+            menuOpen(){
+                if(document.getElementById('checkbox').checked){
+                    document.getElementById('profileMenu').style.display = "block";
+                }
+                else {
+                    document.getElementById('profileMenu').style.display = "none";
+                }
+            },
         },
         computed: {
             token() {
@@ -92,7 +127,11 @@
                 console.log("username is: " + store.getters.getUsername);
                 console.log("find username is: " + this.findUsername);
                 return store.getters.getUsername;
+            },
+            ownerOfProfile(){
+                return this.usernameOfUser===this.findUsername;
             }
+
         }
     }
 </script>

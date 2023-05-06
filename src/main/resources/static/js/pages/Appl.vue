@@ -1,108 +1,5 @@
 <template>
-    <v-app>
-        <div class="background"></div>
-        <div class="header">
-            <div class="header-text">SPORTUNE</div>
-            <div>
-                <input v-model="username" placeholder="введите имя">
-                <v-btn
-                        elevation="2"
-                        color="#3BACB6"
-                        dark
-                        style="margin-top: 10px"
-                        @click="findByUsername"
-                >
-                    find
-                </v-btn>
-            </div>
-
-            <v-btn v-if="!this.token"
-                   elevation="2"
-                   color="#3BACB6"
-                   dark
-                   style="margin-top: 10px"
-                   @click="rout('/login')"
-            >
-                Login
-            </v-btn>
-            <div v-if="this.token" class="user-together">
-                <div class="user-select" @click="userMenu">
-                    <div class="text">
-                        {{usernameOfUser}}
-                    </div>
-                    <v-spacer></v-spacer>
-                    <img src="https://img.freepik.com/free-photo/sports-blonde-woman-in-a-sportswear-training-in-a-gym_1157-31068.jpg?w=740&t=st=1669175912~exp=1669176512~hmac=255c7da8bc0640090a38d180ab202ff5e688fec40ffe42268e40f3ec5d190af5"
-                         alt="" class="round">
-                </div>
-                <div class="hide-overlay" @click="userMenu"></div>
-                <div class="overlay-menu"
-                     ref="overlay"
-                >
-                    <div class="line-name-photo">
-                        <div class="name-line">{{usernameOfUser}}</div>
-                        <img src="https://img.freepik.com/free-photo/sports-blonde-woman-in-a-sportswear-training-in-a-gym_1157-31068.jpg?w=740&t=st=1669175912~exp=1669176512~hmac=255c7da8bc0640090a38d180ab202ff5e688fec40ffe42268e40f3ec5d190af5"
-                             alt="" class="round">
-
-                    </div>
-                    <hr class="hr-line">
-                    <v-overlay
-                            color="#FFFFFF"
-                            z-index="0"
-                            :value="overlay"
-                            opacity="0.1"
-                    >
-                    </v-overlay>
-                    <div class="btn-group">
-                        <v-btn
-                                elevation="2"
-                                color="#3BACB6"
-                                dark
-                                style="margin-top: 10px"
-                                @click="rout('/profile')"
-                        >
-                            Profile
-                        </v-btn>
-                        <v-btn
-                                elevation="2"
-                                color="#3BACB6"
-                                dark
-                                style="margin-top: 10px"
-                                href=""
-                        >
-                            Settings(пока не работает)
-                        </v-btn>
-                        <v-btn
-                                elevation="2"
-                                color="#3BACB6"
-                                dark
-                                style="margin-top: 10px"
-                                href=""
-                        >
-                            Help(пока не работает)
-                        </v-btn>
-                        <v-btn
-                                elevation="2"
-                                color="#3BACB6"
-                                dark
-                                style="margin-top: 10px"
-                                @click="logout"
-                        >
-                            Logout
-                        </v-btn>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="background-card">
-            <v-card
-                    color="#2F8F9D"
-                    height="100vh"
-                    width="80vw"
-            >
-            </v-card>
-        </div>
-    </v-app>
-
+    <div>Main page</div>
 </template>
 
 <script>
@@ -169,39 +66,6 @@
 
 <style>
 
-    * {
-        padding: 0;
-        margin: 0;
-        box-sizing: border-box;
-    }
-
-    .user-together {
-        height: 100%;
-    }
-
-    .hr-line {
-        height: 0;
-        border: none;
-        border-top: 1px solid #176A76;
-        width: 75%;
-        margin-top: 5px;
-        justify-content: center;
-        flex-direction: row;
-    }
-
-    .name-line {
-        margin: auto 0;
-        color: white;
-    }
-
-    .btn-group {
-        display: flex;
-        justify-content: center;
-        flex-direction: column;
-        padding: 0px 40px;
-        margin-bottom: 10px;
-    }
-
     .overlay-menu {
         width: 400px;
         display: none;
@@ -213,16 +77,6 @@
         border-radius: 5px 25px 5px 5px;
     }
 
-    .header {
-        z-index: 1000;
-        position: sticky;
-        top: 0;
-    }
-
-    .background-card {
-        align-self: center;
-        position: absolute;
-    }
 
     .user-select {
         display: flex;

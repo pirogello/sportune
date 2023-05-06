@@ -1,12 +1,7 @@
 <template>
-    <div class="my-button">
-        <!--        <router-link :to="link" class="button" :style="style">-->
-        <!--            {{name}}-->
-        <!--        </router-link>-->
-        <div class="button" :style="style">
-            {{name}}
-        </div>
-    </div>
+    <button type="button" class="button" :style="style">
+        {{name}}
+    </button>
 </template>
 
 <script>
@@ -16,9 +11,9 @@
         computed: {
             style() {
                 return {
-                    '--background-color': this.color,
-                    '--min-width': this.width,
-                    '--min-height' : this.height,
+                    'background-color': this.color,
+                    'min-width': this.width,
+                    'min-height': this.height,
                 }
             }
         }
@@ -33,8 +28,8 @@
         box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.08);
         color: #fff;
         display: block;
-        min-width: var(--min-width);
-        min-height: var(--min-height);
+        min-width: var(min-width);
+        min-height: var(min-height);
         text-align: center;
         font-family: Arial, Helvetica, sans-serif;
         font-size: 14px;
@@ -49,7 +44,7 @@
     }
 
     .button {
-        background-color: var(--background-color);
+        background-color: var(background-color);
         box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
     }
 

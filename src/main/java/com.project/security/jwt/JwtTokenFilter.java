@@ -23,11 +23,11 @@ public class JwtTokenFilter extends GenericFilter {
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         String token = jwtTokenProvider.resolveAccessToken((HttpServletRequest) servletRequest);
 //        Enumeration<String> headerNames = ((HttpServletRequest)servletRequest).getHeaderNames();
-////        if (headerNames != null) {
-////            while (headerNames.hasMoreElements()) {
-////                System.out.println("Header: " + ((HttpServletRequest)servletRequest).getHeader(headerNames.nextElement()));
-////            }
-////        }
+//////        if (headerNames != null) {
+//////            while (headerNames.hasMoreElements()) {
+//////                System.out.println("Header: " + ((HttpServletRequest)servletRequest).getHeader(headerNames.nextElement()));
+//////            }
+//////        }
         log.info("In doFilter with token: {}", token);
         String refreshToken = jwtTokenProvider.resolveRefreshToken((HttpServletRequest) servletRequest);
         log.info("In doFilter with refresh token: {}", refreshToken);

@@ -1,13 +1,15 @@
 <template>
-    <v-app>
-        <div class="background"></div>
+    <div>
+        <!--        <div class="background"></div>-->
         <div class="wrapper fadeInDown">
             <div id="formContent">
                 <!-- Tabs Titles -->
                 <h2 class="active"> Sign In </h2>
-                <form >
-                    <input ref="field" type="text" v-model="username" class="fadeIn second" name="username" placeholder="username">
-                    <input ref="field" type="password" id="password-input" v-model="password" class="fadeIn third" name="password"
+                <form>
+                    <input ref="field" type="text" v-model="username" class="fadeIn second" name="username"
+                           placeholder="username">
+                    <input ref="field" type="password" id="password-input" v-model="password" class="fadeIn third"
+                           name="password"
                            placeholder="password">
                     <Button
                             @click.native="login(), clearFields()"
@@ -24,7 +26,7 @@
 
             </div>
         </div>
-    </v-app>
+    </div>
 </template>
 
 <script>
@@ -42,19 +44,19 @@
             }
         },
         methods: {
-            clearFields(){
+            clearFields() {
                 this.username = ""
                 this.password = ""
             },
-           async login() {
-               store.dispatch('onLogin',{
-                   username: this.username,
-                   password: this.password
-               }).then((res) => {
-                   router.push('/');
-               }).catch(function (error) {
+            async login() {
+                store.dispatch('onLogin', {
+                    username: this.username,
+                    password: this.password
+                }).then((res) => {
+                    router.push('/');
+                }).catch(function (error) {
 
-               });
+                });
             },
         }
     }
@@ -136,6 +138,11 @@
         border-bottom: 2px solid #5fbae9;
     }
 
+    form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 
     /* FORM TYPOGRAPHY*/
 
@@ -293,10 +300,6 @@
 
     .underlineHover:hover:after {
         width: 100%;
-    }
-
-    .my-button {
-        display: inline-block;
     }
 
 

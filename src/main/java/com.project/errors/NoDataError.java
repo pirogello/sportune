@@ -1,4 +1,10 @@
 package com.project.errors;
 
-public class NoDataError {
+import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
+
+@AllArgsConstructor
+public class NoDataError  extends RuntimeException {
+    private String message;
+    private HttpStatus status;
 }

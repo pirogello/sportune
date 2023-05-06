@@ -8,8 +8,8 @@ import java.time.LocalDateTime;
 
 @Data
 public class CreateTrainDto {
-    private String title;
     protected LocalDateTime startTrain;
-    protected LocalDateTime endTrain;
-    private String trainerUsername;
+    protected String location;
+    protected String trainerUsername;
+
 }

@@ -35,7 +35,7 @@ public class User extends BaseUser {
     @ManyToOne
     @JsonIgnoreProperties({"likedPublication", "jointPublication", "publications", "followers", "following","trainee"})
     private Trainer trainer;
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     @JsonIgnoreProperties({"users"})
     @JoinTable(name = "user_trains", joinColumns = {@JoinColumn(name = "user_id")}, inverseJoinColumns = {@JoinColumn(name = "train_id")})
     private List<Train> trains = new ArrayList<>();
@@ -61,6 +61,10 @@ public class User extends BaseUser {
     }
     public void addTrain(Train train){
         this.trains.add(train);
+    }
+
+    public void deleteTrain(Train train){
+        this.trains.remove(train);
     }
 
     @Override

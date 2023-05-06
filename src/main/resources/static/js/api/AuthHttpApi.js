@@ -1,16 +1,16 @@
-import http from './http-common'
+import http from './http-common.js'
 
 export const AuthApi = {
-    login(username,password) {
+    login(username, password) {
         const url = '/api/v1/auth/login';
         const data = {
-            username:username,
-            password:password
+            username: username,
+            password: password
         }
         return http.post(url, data)
     },
 
-    logout(){
+    logout() {
         const url = 'api/v1/auth/logout';
         return http.get(url);
     }

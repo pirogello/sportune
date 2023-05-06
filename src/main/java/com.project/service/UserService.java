@@ -34,9 +34,14 @@ public class UserService {
         return user.orElse(null);
     }
 
-    public BaseUser findByUsername(String username){
+    public ResponseEntity<BaseUser>findByUsername(String username){
         log.info("In findByUsername. Username: {}", username);
-        return userRepo.findByUsername(username);
+        BaseUser user = userRepo.findByUsername(username);
+        if(user == null){
+            System.out.println("ERROR");
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
     public BaseUser register(BaseUser user) {

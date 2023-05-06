@@ -2,7 +2,7 @@
     <v-app>
         <div class="background"></div>
         <div class="header">
-            <div class="header-text">SPORTUNE</div>
+            <div class="header-text" >SPORTUNE</div>
 
             <div class="buttons">
                 <Button
@@ -100,16 +100,7 @@
 
     }
 
-    .header-text {
-        color: white;
-        font-family: 'Montserrat';
-        font-style: normal;
-        text-align: center;
-        font-size: 32px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
+
 
     .buttons {
         height: 54px;
@@ -124,19 +115,5 @@
         position: absolute;
     }
 
-    @media (max-width: 625px) {
-        .header-text {
-            font-size: 24px;
-        }
-
-        .header {
-            padding: 5px 20px;
-        }
-
-        .my-button {
-            min-width: 80px;
-            font-size: 8px !important;
-        }
-    }
 
 </style>

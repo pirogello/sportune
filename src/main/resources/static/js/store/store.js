@@ -81,6 +81,5 @@ export default new Vuex.Store({
             delete http.defaults.headers['authorization']
             delete http.defaults.headers['refresh']
         },
-
     }
 })

@@ -1,7 +1,7 @@
 import Vue from 'vue';
-import Vuetify from 'vuetify';
+//import Vuetify from 'vuetify';
 import '@babel/polyfill'
-import 'vuetify/dist/vuetify.min.css'
+//import 'vuetify/dist/vuetify.min.css'
 import store from "./store/store";
 import router from "./router/router";
 import App from 'pages/App.vue'
@@ -16,10 +16,10 @@ http.get('/test/api/fillDB', {})
     });
 
 
-Vue.use(Vuetify);
+//Vue.use(Vuetify);
 
 new Vue({
-    vuetify: new Vuetify(),
+    // vuetify: new Vuetify(),
     el: '#app',
     store,
     router,

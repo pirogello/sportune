@@ -21,31 +21,31 @@
                             </div>
                             <div class="profileMenu" id="profileMenu">
                                 <Button
-                                        @click.native="(usernameOfUser===findUsername)?rout('/profil/posts') : rout('/user/'+findUsername+'/posts')"
+                                        @click.native="rout('/sportsman/'+findUsername+'/posts')"
                                         name="Публикации"
                                         color="#3BACB6"
                                         width="132px"
                                 ></Button>
-                                <Button v-if="this.token"
-                                        @click.native="(usernameOfUser===findUsername)?rout('/profil/trainings') : rout('/user/'+findUsername+'/trainings')"
+                                <Button
+                                        @click.native="rout('/sportsman/'+findUsername+'/trainings')"
                                         name="Тренировки"
                                         color="#3BACB6"
                                         width="132px"
                                 ></Button>
-                                <Button v-if="this.token"
-                                        @click.native="(usernameOfUser===findUsername)?rout('/profil/trophies') : rout('/user/'+findUsername+'/trophies')"
+                                <Button
+                                        @click.native="rout('/sportsman/'+findUsername+'/trophies')"
                                         name="Награды"
                                         color="#3BACB6"
                                         width="132px"
                                 ></Button>
-                                <Button v-if="this.token"
-                                        @click.native="(usernameOfUser===findUsername)?rout('/profil/coaches') : rout('/user/'+findUsername+'/coaches')"
+                                <Button v-if="ownerOfProfile"
+                                        @click.native="rout('/sportsman/'+findUsername+'/coaches')"
                                         name="Тренеры"
                                         color="#3BACB6"
                                         width="132px"
                                 ></Button>
-                                <Button v-if="this.token"
-                                        @click.native="(usernameOfUser===findUsername)?rout('/profil/competitions') : rout('/user/'+findUsername+'/competitions')"
+                                <Button
+                                        @click.native="rout('/sportsman/'+findUsername+'/competitions')"
                                         name="Соревнования"
                                         color="#3BACB6"
                                         width="132px"
@@ -54,7 +54,7 @@
                         </div>
                     </div>
                 </div>
-                <router-view :username1="findUsername"></router-view>
+                <router-view :username1="this.findUsername"></router-view>
 
             </div>
         </div>
@@ -62,21 +62,22 @@
 </template>
 
 <script>
-    import store from "../store/store.js"
-    import Button from '../components/Button.vue'
-    import router from "../router/router";
-    import Post from "../components/Post.vue";
-    import http from "../api/http-common.js";
+    import store from "../../store/store.js"
+    import Button from '../../components/Button.vue'
+    import router from "../../router/router";
+    import Post from "../../components/Post.vue";
+    import http from "../../api/http-common.js";
 
 
     export default {
         components: {Button, Post},
-        props:['findUsername'],
+        props:['profileName'],
         data() {
             return {
                 menu: false,
                 overlay: false,
                 username: "",
+                findUsername : router.currentRoute.params.username,
             }
         },
         methods: {
@@ -116,18 +117,19 @@
                 else {
                     document.getElementById('profileMenu').style.display = "none";
                 }
-            }
+            },
+
 
         },
         computed: {
             token() {
-                console.log("token is: " + store.getters.getToken);
                 return store.getters.getToken;
             },
             usernameOfUser() {
-                console.log("username is: " + store.getters.getUsername);
-                console.log("find username is: " + this.findUsername);
                 return store.getters.getUsername;
+            },
+            ownerOfProfile(){
+                return this.usernameOfUser===this.findUsername;
             }
         }
     }

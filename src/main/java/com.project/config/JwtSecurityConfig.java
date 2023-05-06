@@ -10,6 +10,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.BeanIds;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -48,18 +49,33 @@ public class JwtSecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
-                .antMatchers("/", "/login", "/js/**",
-                        "/error/**","/test/**", "/test/api/**",
-                        "/api/v1/auth/**", "/resp/**","/models/**",
+                .antMatchers("/", /*"/login", "/js/**",*/
+                        "/error/**", "/test/api/**",
+                       /* "/api/v1/auth/**",*/ "/resp/**","/models/**",
                         "/readUsers/**","/readPublication/**",
-                        "/user/**", "/ap/**", "/profile/**", "/user/**",
-                        "/findUser/**").permitAll()// пути разрешенные всем
+                        "/user/**", "/ap/**", "/test/**",
+                        "/findUser/**", "/sportsman/**", "/trainer/**").permitAll()// пути разрешенные всем
                 //.antMatchers("/api/v1/auth/**", "/resp/**").permitAll()
-                .antMatchers("/profile/admin").hasAuthority("TRAINER")// пути разрешенные пользователям с ролью TRAINER
+                .antMatchers("/getprofile/admin").hasAuthority("TRAINER")// пути разрешенные пользователям с ролью TRAINER
                 .anyRequest().authenticated()
                 .and()
                 .apply(new JwtConfigurer(jwtTokenProvider));
     }
 
-
+    @Override
+    public void configure(WebSecurity web) throws Exception {
+        web.ignoring().antMatchers(
+                "/api/v1/auth/**",
+                "/haveauth/**",
+                "/admin/**",
+                "/webjars/**",
+                "/favicon.ico",
+                "/**/*.png",
+                "/**/*.gif",
+                "/**/*.svg",
+                "/**/*.jpg",
+                "/**/*.html",
+                "/**/*.css",
+                "/**/*.js");
+    }
 }

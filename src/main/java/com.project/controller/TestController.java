@@ -161,11 +161,17 @@ public class TestController {
         sportResultRepo.save(result1);
         sportResultRepo.save(result2);
 
-        Train train1 = new Train("train1", LocalDateTime.now(), LocalDateTime.of(2023, 10, 1,10,0,0));
+        Train train1 = new Train("Спортзал 'Динамит'", LocalDateTime.now(), LocalDateTime.of(2023, 10, 1,10,0,0));
+        Train train2 = new Train("Стадион 'Локомотив'", LocalDateTime.now(), LocalDateTime.of(2023, 10, 1,10,0,0));
         trainRepo.save(train1);
+        trainRepo.save(train2);
         train1.addTrainer(trainer1);
         train1.addUser(user1);
         train1.addUser(user2);
+        train2.addTrainer(trainer1);
+        train2.addUser(user2);
+        trainRepo.save(train1);
+        trainRepo.save(train2);
 
         trainerRepo.save(trainer1);
         trainerRepo.save(trainer2);

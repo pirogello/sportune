@@ -22,7 +22,7 @@ public class Train {
     @GeneratedValue(generator="system-uuid")
     @GenericGenerator(name = "system-uuid", strategy = "org.hibernate.id.UUIDGenerator")
     private UUID id;
-    private String title;
+    private String location;
     @Column(columnDefinition = "TIMESTAMP")
     protected LocalDateTime startTrain;
     @Column(columnDefinition = "TIMESTAMP")
@@ -30,15 +30,15 @@ public class Train {
     @ManyToOne
     @JsonIgnoreProperties({"likedPublication", "jointPublication", "publications", "followers", "following", "trains", "trainee"})
     private Trainer trainer;
-    @ManyToMany(mappedBy = "trains")
+    @ManyToMany(mappedBy = "trains", cascade = CascadeType.ALL)
     @JsonIgnoreProperties({"likedPublication", "jointPublication", "publications","competitions","sportResults", "followers", "following", "trains", "trainer"})
     private List<User> users = new ArrayList<>();
 
 
 
 
-    public Train(String title, LocalDateTime startTrain, LocalDateTime endTrain) {
-        this.title = title;
+    public Train(String location, LocalDateTime startTrain, LocalDateTime endTrain) {
+        this.location = location;
         this.startTrain = startTrain;
         this.endTrain = endTrain;
     }
@@ -46,7 +46,22 @@ public class Train {
     public void addUser(User user){
         user.addTrain(this);
     }
+    public void deleteUser(User user){
+        user.deleteTrain(this);
+    }
     public void addTrainer(Trainer trainer){
         trainer.addTrain(this);
+    }
+
+    @Override
+    public String toString() {
+        return "Train{" +
+                "id=" + id +
+                ", location='" + location + '\'' +
+                ", startTrain=" + startTrain +
+                ", endTrain=" + endTrain +
+                ", trainer=" + trainer +
+                ", users=" + users +
+                '}';
     }
 }
