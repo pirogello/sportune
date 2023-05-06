@@ -49,7 +49,7 @@ public class JwtSecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
-                .antMatchers("/", /*"/login", "/js/**",*/
+                .antMatchers("/","login", /*"/login", "/js/**",*/
                         "/error/**", "/test/api/**",
                        /* "/api/v1/auth/**",*/ "/resp/**","/models/**",
                         "/readUsers/**","/readPublication/**",
