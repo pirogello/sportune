@@ -56,7 +56,7 @@ sudo npm install webpack-dev-server -g
 Для этого в терминале выполните следующие команды:
 ```
 sudo -u postgres psql
-/password postgres
+\password postgres
 ```
 
 После того как вошли в базу данных и задали пароль для пользователя, создайте базу данных:
