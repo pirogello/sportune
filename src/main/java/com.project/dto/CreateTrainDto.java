@@ -9,6 +9,7 @@ import java.time.LocalDateTime;
 @Data
 public class CreateTrainDto {
     protected LocalDateTime startTrain;
+    protected LocalDateTime endTrain;
     protected String location;
     protected String trainerUsername;
 

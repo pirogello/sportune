@@ -19,55 +19,58 @@
                     color="#3BACB6"
             >
             </Button>
-
-            <div v-if="this.token" class="user-together">
-                <div class="user-select" @click="userMenu">
-                    <div class="text">
-                        {{usernameOfUser}}
-                    </div>
-                    <img src="https://img.freepik.com/free-photo/sports-blonde-woman-in-a-sportswear-training-in-a-gym_1157-31068.jpg?w=740&t=st=1669175912~exp=1669176512~hmac=255c7da8bc0640090a38d180ab202ff5e688fec40ffe42268e40f3ec5d190af5"
-                         alt="" class="round">
-                </div>
-                <div class="hide-overlay" @click="userMenu"></div>
-                <div class="overlay-menu"
-                     ref="overlay"
-                >
-                    <div class="line-name-photo">
-                        <div class="name-line">{{usernameOfUser}}</div>
+            <div class="user_menu_block">
+<!--                <div src="" class="notifications" v-if="this.token">notification</div>-->
+                <div v-if="this.token" class="user-together">
+                    <div class="user-select" @click="userMenu">
+                        <div class="text">
+                            {{usernameOfUser}}
+                        </div>
                         <img src="https://img.freepik.com/free-photo/sports-blonde-woman-in-a-sportswear-training-in-a-gym_1157-31068.jpg?w=740&t=st=1669175912~exp=1669176512~hmac=255c7da8bc0640090a38d180ab202ff5e688fec40ffe42268e40f3ec5d190af5"
                              alt="" class="round">
-
                     </div>
-                    <hr class="hr-line">
-                    <div class="btn-group">
-                        <div class="backdrop"></div>
-                        <Button
-                                @click.native="profile(), userMenu()"
-                                name="Profile"
-                                color="#3BACB6"
-                        >
-                        </Button>
-                        <Button
-                                @click.native="userMenu"
-                                name="Settings(пока не работает)"
-                                color="#3BACB6"
-                        >
-                        </Button>
-                        <Button
-                                @click.native="userMenu"
-                                name="Help(пока не работает)"
-                                color="#3BACB6"
-                        >
-                        </Button>
-                        <Button
-                                @click.native="logout(), userMenu()"
-                                name="Logout"
-                                color="#3BACB6"
-                        >
-                        </Button>
+                    <div class="hide-overlay" @click="userMenu"></div>
+                    <div class="overlay-menu"
+                         ref="overlay"
+                    >
+                        <div class="line-name-photo">
+                            <div class="name-line">{{usernameOfUser}}</div>
+                            <img src="https://img.freepik.com/free-photo/sports-blonde-woman-in-a-sportswear-training-in-a-gym_1157-31068.jpg?w=740&t=st=1669175912~exp=1669176512~hmac=255c7da8bc0640090a38d180ab202ff5e688fec40ffe42268e40f3ec5d190af5"
+                                 alt="" class="round">
+
+                        </div>
+                        <hr class="hr-line">
+                        <div class="btn-group">
+                            <div class="backdrop"></div>
+                            <Button
+                                    @click.native="profile(), userMenu()"
+                                    name="Profile"
+                                    color="#3BACB6"
+                            >
+                            </Button>
+                            <Button
+                                    @click.native="userMenu"
+                                    name="Settings(пока не работает)"
+                                    color="#3BACB6"
+                            >
+                            </Button>
+                            <Button
+                                    @click.native="userMenu"
+                                    name="Help(пока не работает)"
+                                    color="#3BACB6"
+                            >
+                            </Button>
+                            <Button
+                                    @click.native="logout(), userMenu()"
+                                    name="Logout"
+                                    color="#3BACB6"
+                            >
+                            </Button>
+                        </div>
                     </div>
                 </div>
             </div>
+
         </div>
 
         <router-view></router-view>
@@ -162,7 +165,8 @@
             usernameOfUser() {
                 console.log("username is: " + store.getters.getUsername);
                 return store.getters.getUsername;
-            }
+            },
+
         }
     }
 </script>
@@ -183,6 +187,10 @@
         height: 100%;
     }
 
+    .user_menu_block{
+        display: flex;
+        flex-direction: row;
+    }
     .hr-line {
         height: 0;
         border: none;
@@ -363,6 +371,12 @@
         justify-content: center;
         align-items: center;
         cursor: pointer;
+    }
+
+    .notifications{
+        width: auto;
+        background: white;
+        margin: 10px;
     }
 
     @media (max-width: 625px) {

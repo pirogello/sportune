@@ -7,7 +7,6 @@ import router from "./router/router";
 import App from 'pages/App.vue'
 import http from "./api/http-common.js";
 
-
 http.get('/test/api/fillDB', {})
     .then(function (response) {
     })

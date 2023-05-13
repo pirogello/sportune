@@ -28,9 +28,23 @@ public class TrainService {
     @Autowired
     private UserRepo userRepo;
 
+    @Autowired
+    private MailSender sender;
+
     public Train createTrain(CreateTrainDto trainDto) {
-        Train train = new Train(trainDto.getLocation(), trainDto.getStartTrain(), trainDto.getStartTrain());
+        Train train = new Train(trainDto.getLocation(), trainDto.getStartTrain(), trainDto.getEndTrain());
         train.addTrainer(trainerRepo.findByUsername(trainDto.getTrainerUsername()));
+        Trainer trainer = trainerRepo.findByUsername(trainDto.getTrainerUsername());
+        List<User> users = trainer.getTrainee();
+
+
+        for (User user:users) {
+            String message = String.format("Hello, %s\n" + "Ваш тренер(%s) создал новую тренировку!\n" + "Записывайтесь!",
+                    user.getUsername(),
+                    trainer.getUsername());
+            sender.send(user.getEmail(), "Появилась новая тренировка", message);
+        }
+
         return trainRepo.save(train);
     }
 

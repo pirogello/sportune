@@ -28,7 +28,7 @@
                                         width="132px"
                                 ></Button>
                                 <Button
-                                        @click.native="rout('/trainer/'+findUsername+'/trainings')"
+                                        @click.native="rout('/trainer/'+findUsername+'/calendar')"
                                         name="Тренировки"
                                         color="#3BACB6"
                                         width="132px"

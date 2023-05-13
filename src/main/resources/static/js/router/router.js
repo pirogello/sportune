@@ -19,6 +19,8 @@ import TrainerProfile from "../pages/trainer/TrainerProfile.vue";
 import TrainerTrainings from "../pages/trainer/TrainerTrainings.vue";
 import UserProfile from "../pages/user/UserProfile.vue";
 import CreateTrainForm from "../pages/trainer/CreateTrainForm.vue"
+import TrainerTrainingsCaledar from "../pages/trainer/TrainerTrainingsCalendar.vue"
+import UserTrainingsCalendar from "../pages/user/UserTrainingsCalendar.vue"
 import store from "../store/store.js"
 
 Vue.use(VueRouter)
@@ -39,7 +41,7 @@ const routes = [
             },
             {
                 path: 'trainings',
-                component: UserTrainings,
+                component: UserTrainingsCalendar,
             },
             {
                 path: 'trophies',
@@ -82,6 +84,10 @@ const routes = [
             {
                 path: 'createTrain',
                 component: CreateTrainForm,
+            },
+            {
+                path: 'calendar',
+                component: TrainerTrainingsCaledar,
             },
         ]
 

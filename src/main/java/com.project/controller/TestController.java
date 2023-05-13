@@ -71,7 +71,7 @@ public class TestController {
         user1.setStatus(Status.ACTIVE);
         user2.setStatus(Status.ACTIVE);
         user3.setStatus(Status.ACTIVE);
-
+        user1.setEmail("nikita-pirogov-artur@mail.ru");
         userService.register(user1);
         userService.register(user2);
         userService.register(user3);
@@ -97,9 +97,9 @@ public class TestController {
         userService.register(trainer1);
         userService.register(trainer2);
 
-        trainer1.addTrainee(user2);
-        trainer1.addTrainee(user3);
-        trainer2.addTrainee(user1);
+        trainer1.addTrainee(user1);
+        //trainer1.addTrainee(user3);
+        //trainer2.addTrainee(user1);
 
         Organizer organizer1 = new Organizer("organizer1", "info about organizer1", "passOrganizer1");
         organizer1.setStatus(Status.ACTIVE);
@@ -161,8 +161,8 @@ public class TestController {
         sportResultRepo.save(result1);
         sportResultRepo.save(result2);
 
-        Train train1 = new Train("Спортзал 'Динамит'", LocalDateTime.now(), LocalDateTime.of(2023, 10, 1,10,0,0));
-        Train train2 = new Train("Стадион 'Локомотив'", LocalDateTime.now(), LocalDateTime.of(2023, 10, 1,10,0,0));
+        Train train1 = new Train("Спортзал 'Динамит'",LocalDateTime.of(2023, 10, 13,10,0,0), LocalDateTime.of(2023, 10, 13,11,30,0));
+        Train train2 = new Train("Стадион 'Локомотив'", LocalDateTime.of(2023, 10, 12,11,0,0), LocalDateTime.of(2023, 10, 12,14,0,0));
         trainRepo.save(train1);
         trainRepo.save(train2);
         train1.addTrainer(trainer1);
